@@ -1,0 +1,6 @@
+.idea/*
+!.idea/kotlinc.xml
+!.idea/inspectionProfiles
+/build
+/out
+.gradle/*
