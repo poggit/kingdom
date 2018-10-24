@@ -1,9 +1,6 @@
-package io.pmmp.poggit.kingdom
+package io.pmmp.poggit.kingdom.basic
 
-import io.kotlintest.specs.FreeSpec
-import io.pmmp.poggit.kingdom.basic.escape
-import io.pmmp.poggit.kingdom.basic.minimal
-import io.pmmp.poggit.kingdom.basic.simple
+import io.pmmp.poggit.kingdom.html.dom.HtmlTree
 
 /*
  *  Kingdom, the Kotlin DOM template engine
@@ -23,12 +20,6 @@ import io.pmmp.poggit.kingdom.basic.simple
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-class Tests : FreeSpec(kingdomTest {
-	"basic" / {
-		"minimal" - ::minimal
-		"simple" - ::simple
-		"escape" - ::escape
-//		"varTemplate" - ::varTemplate
-	}
-})
+fun varTemplate(html: HtmlTree) = html {
 
+}
