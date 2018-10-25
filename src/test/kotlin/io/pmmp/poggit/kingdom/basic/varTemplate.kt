@@ -1,6 +1,8 @@
 package io.pmmp.poggit.kingdom.basic
 
+import io.pmmp.poggit.kingdom.KingdomTestData
 import io.pmmp.poggit.kingdom.html.dom.HtmlTree
+import io.pmmp.poggit.kingdom.html.dyn
 
 /*
  *  Kingdom, the Kotlin DOM template engine
@@ -20,6 +22,8 @@ import io.pmmp.poggit.kingdom.html.dom.HtmlTree
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-fun varTemplate(html: HtmlTree) = html {
-
+fun varTemplate(html: HtmlTree<KingdomTestData>) = html {
+	head {
+		title = dyn { "Hello, ${it["name"]}!" }
+	}
 }

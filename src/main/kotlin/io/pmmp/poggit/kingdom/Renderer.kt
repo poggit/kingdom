@@ -18,8 +18,8 @@ package io.pmmp.poggit.kingdom
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-class Renderer(
-	val data: Context,
+class Renderer<out Data : Context>(
+	val data: Data,
 	val target: (CharSequence) -> Unit,
 	val indent: String,
 	val eol: String
@@ -27,13 +27,13 @@ class Renderer(
 	private var lineStart = true
 	var indents = 0
 
-	inline fun indented(f: () -> Unit){
+	inline fun indented(f: () -> Unit) {
 		indents++
 		f()
 		indents--
 	}
 
-	fun append(cs: CharSequence): Renderer {
+	fun append(cs: CharSequence): Renderer<Data> {
 		if (lineStart) {
 			target(indent.repeat(indents))
 			lineStart = false
@@ -47,10 +47,11 @@ class Renderer(
 		append(cs)
 	}
 
-	fun ln(): Renderer {
+	fun ln(): Renderer<Data> {
 		target(eol)
 		lineStart = true
 		return this
 	}
+
 	fun appendln(cs: CharSequence) = append(cs).ln()
 }

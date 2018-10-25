@@ -1,5 +1,6 @@
 package io.pmmp.poggit.kingdom.html
 
+import io.pmmp.poggit.kingdom.Context
 import io.pmmp.poggit.kingdom.Renderer
 import org.apache.commons.text.StringEscapeUtils.escapeHtml4
 
@@ -21,15 +22,24 @@ import org.apache.commons.text.StringEscapeUtils.escapeHtml4
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-interface Template {
-	fun render(r: Renderer)
+interface Template<in Data : Context> {
+	fun render(r: Renderer<Data>)
 }
 
-class StaticTemplate(val static: String) : Template {
-	override fun render(r: Renderer) {
+class StaticTemplate<in Data : Context>(val static: String) : Template<Data> {
+	override fun render(r: Renderer<Data>) {
 		r.append(static)
 	}
 }
 
-val String.asHtml get() = StaticTemplate(this)
-val String.asText get() = StaticTemplate(escapeHtml4(this))
+fun <Data : Context> String.asHtml() = StaticTemplate<Data>(this)
+fun <Data : Context> String.asText() = StaticTemplate<Data>(escapeHtml4(this))
+
+class FunctionTemplate<in Data : Context>(val f: (r: Data) -> String) : Template<Data> {
+	override fun render(r: Renderer<Data>) {
+		r.append(f(r.data))
+	}
+
+}
+
+fun <Data : Context> dyn(f: (r: Data) -> String) = FunctionTemplate(f)

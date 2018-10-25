@@ -18,9 +18,9 @@ package io.pmmp.poggit.kingdom.css
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-class CssRuleSet (
+class CssRuleSet(
 	val name: String,
 	val selector: CssSelector
-){
+) {
 	val rules = mutableSetOf<CssRule>()
 }

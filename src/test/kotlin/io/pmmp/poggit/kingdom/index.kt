@@ -4,6 +4,7 @@ import io.kotlintest.specs.FreeSpec
 import io.pmmp.poggit.kingdom.basic.escape
 import io.pmmp.poggit.kingdom.basic.minimal
 import io.pmmp.poggit.kingdom.basic.simple
+import io.pmmp.poggit.kingdom.basic.varTemplate
 
 /*
  *  Kingdom, the Kotlin DOM template engine
@@ -28,7 +29,9 @@ class Tests : FreeSpec(kingdomTest {
 		"minimal" - ::minimal
 		"simple" - ::simple
 		"escape" - ::escape
-//		"varTemplate" - ::varTemplate
+		"varTemplate" - ::varTemplate + {
+			"name" - "Alice"
+		}
 	}
 })
 

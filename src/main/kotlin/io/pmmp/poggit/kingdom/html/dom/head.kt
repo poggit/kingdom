@@ -1,7 +1,8 @@
 package io.pmmp.poggit.kingdom.html.dom
 
+import io.pmmp.poggit.kingdom.Context
 import io.pmmp.poggit.kingdom.Renderer
-import io.pmmp.poggit.kingdom.html.DomElement
+import io.pmmp.poggit.kingdom.html.global.DomElement
 import io.pmmp.poggit.kingdom.html.Template
 
 /*
@@ -22,13 +23,13 @@ import io.pmmp.poggit.kingdom.html.Template
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-class HeadNode : DomElement<HeadNode>("head") {
-	var title: Template? = null
+class HeadNode<Data : Context> : DomElement<Data, HeadNode<Data>>("head") {
+	var title: Template<Data>? = null
 
-	val meta = MetaNodes()
+	val meta = MetaNodes<Data>()
 
-	override fun renderChildren(r: Renderer) {
-		if(title != null) {
+	override fun renderChildren(r: Renderer<Data>) {
+		if (title != null) {
 			r.append("<title>")
 			title!!.render(r)
 			r.appendln("</title>")

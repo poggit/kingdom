@@ -20,7 +20,7 @@ package io.pmmp.poggit.kingdom.utils
 
 @Suppress("UNCHECKED_CAST")
 interface RunnableIn<out Self> {
-	operator fun invoke(f: Self.() -> Unit){
+	operator fun invoke(f: Self.() -> Unit) {
 		f(this as Self)
 	}
 }

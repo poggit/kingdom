@@ -1,9 +1,4 @@
-package io.pmmp.poggit.kingdom.html.dom
-
-import io.pmmp.poggit.kingdom.Context
-import io.pmmp.poggit.kingdom.Renderer
-import io.pmmp.poggit.kingdom.html.global.DomElement
-import io.pmmp.poggit.kingdom.html.ElementStyle
+package io.pmmp.poggit.kingdom.html.global
 
 /*
  *  Kingdom, the Kotlin DOM template engine
@@ -22,15 +17,11 @@ import io.pmmp.poggit.kingdom.html.ElementStyle
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-class HtmlTree<Data : Context> : DomElement<Data, HtmlTree<Data>>("html") {
-	val head = HeadNode<Data>()
-	val body = BodyNode<Data>()
-
-	override val style: ElementStyle = ElementStyle.BIG_BLOCK
-
-	override fun renderChildren(r: Renderer<Data>) {
-		head.render(r)
-		body.render(r)
-	}
+enum class AutoCapitalize(val string: String) {
+	OFF("off"),
+	NONE("none"),
+	ON("on"),
+	SENTENCES("sentences"),
+	WORDS("words"),
+	CHARACTERS("characters");
 }

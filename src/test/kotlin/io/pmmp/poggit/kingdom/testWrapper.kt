@@ -41,8 +41,8 @@ class KingdomTestScope(val dir: String) {
 		scope.f()
 	}
 
-	operator fun String.minus(f: (html: HtmlTree) -> Unit): KingdomTestFile {
-		val html = HtmlTree()
+	operator fun String.minus(f: (html: HtmlTree<KingdomTestData>) -> Unit): KingdomTestFile {
+		val html = HtmlTree<KingdomTestData>()
 		f(html)
 
 		val file = KingdomTestFile(html)
@@ -75,18 +75,21 @@ class KingdomTestScope(val dir: String) {
 	}
 }
 
-class KingdomTestFile(val tree: HtmlTree) {
+class KingdomTestFile(val tree: HtmlTree<KingdomTestData>) {
 	val testData = KingdomTestData()
 
 	operator fun plus(f: KingdomTestData.() -> Unit) = testData.f()
 }
 
 class KingdomTestData : Context {
-	operator fun String.minus(data: String) {
-		TODO()
+	val map = mutableMapOf<String, () -> String>()
+
+	operator fun get(name: String) = map[name]!!.invoke()
+
+	operator fun String.minus(data: () -> String) {
+		map[this] = data
 	}
 
-	operator fun String.minus(data: Number) {
-		TODO()
-	}
+	operator fun String.minus(data: String) = minus { data }
+	operator fun String.minus(data: Number) = minus(data.toString())
 }

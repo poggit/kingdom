@@ -1,9 +1,6 @@
-package io.pmmp.poggit.kingdom.html.dom
+package io.pmmp.poggit.kingdom.html
 
 import io.pmmp.poggit.kingdom.Context
-import io.pmmp.poggit.kingdom.Renderer
-import io.pmmp.poggit.kingdom.html.global.DomElement
-import io.pmmp.poggit.kingdom.html.ElementStyle
 
 /*
  *  Kingdom, the Kotlin DOM template engine
@@ -23,14 +20,10 @@ import io.pmmp.poggit.kingdom.html.ElementStyle
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-class HtmlTree<Data : Context> : DomElement<Data, HtmlTree<Data>>("html") {
-	val head = HeadNode<Data>()
-	val body = BodyNode<Data>()
-
-	override val style: ElementStyle = ElementStyle.BIG_BLOCK
-
-	override fun renderChildren(r: Renderer<Data>) {
-		head.render(r)
-		body.render(r)
+abstract class DomNode<in Data : Context, out Self : DomNode<Data, Self>> : Template<Data> {
+	@Suppress("UNCHECKED_CAST")
+	inline operator fun invoke(f: Self.() -> Unit) {
+		f(this as Self)
 	}
 }
+

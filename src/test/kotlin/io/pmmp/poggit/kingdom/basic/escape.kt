@@ -1,5 +1,6 @@
 package io.pmmp.poggit.kingdom.basic
 
+import io.pmmp.poggit.kingdom.KingdomTestData
 import io.pmmp.poggit.kingdom.html.asText
 import io.pmmp.poggit.kingdom.html.dom.HtmlTree
 
@@ -21,8 +22,8 @@ import io.pmmp.poggit.kingdom.html.dom.HtmlTree
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-fun escape(html: HtmlTree) = html {
+fun escape(html: HtmlTree<KingdomTestData>) = html {
 	head {
-		title = "<Hello> & <bye/> \"world\"!".asText
+		title = "<Hello> & <bye/> \"world\"!".asText()
 	}
 }

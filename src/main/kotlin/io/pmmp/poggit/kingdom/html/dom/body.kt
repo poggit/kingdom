@@ -1,9 +1,9 @@
 package io.pmmp.poggit.kingdom.html.dom
 
+import io.pmmp.poggit.kingdom.Context
 import io.pmmp.poggit.kingdom.Renderer
-import io.pmmp.poggit.kingdom.html.DomElement
+import io.pmmp.poggit.kingdom.html.global.DomElement
 import io.pmmp.poggit.kingdom.html.ElementStyle
-import io.pmmp.poggit.kingdom.html.Template
 
 /*
  *  Kingdom, the Kotlin DOM template engine
@@ -23,8 +23,8 @@ import io.pmmp.poggit.kingdom.html.Template
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-class BodyNode : DomElement<BodyNode>("body") {
+class BodyNode<Data : Context> : DomElement<Data, BodyNode<Data>>("body") {
 	override val style = ElementStyle.BIG_BLOCK
-	override fun renderChildren(r: Renderer) {
+	override fun renderChildren(r: Renderer<Data>) {
 	}
 }

@@ -1,5 +1,6 @@
 package io.pmmp.poggit.kingdom.html.dom
 
+import io.pmmp.poggit.kingdom.Context
 import io.pmmp.poggit.kingdom.Renderer
 import io.pmmp.poggit.kingdom.html.DomNode
 import io.pmmp.poggit.kingdom.html.Template
@@ -22,14 +23,14 @@ import io.pmmp.poggit.kingdom.html.Template
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-class MetaNodes : DomNode<MetaNodes>() {
-	private val properties = mutableMapOf<String, Template?>()
+class MetaNodes<Data : Context> : DomNode<Data, MetaNodes<Data>>() {
+	private val properties = mutableMapOf<String, Template<Data>?>()
 
-	operator fun set(name: String, content: Template?) {
+	operator fun set(name: String, content: Template<Data>?) {
 		properties[name] = content
 	}
 
-	override fun render(r: Renderer) {
+	override fun render(r: Renderer<Data>) {
 		for (property in properties) {
 			val value = property.value
 			if (value != null) {

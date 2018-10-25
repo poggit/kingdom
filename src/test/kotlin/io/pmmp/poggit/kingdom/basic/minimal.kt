@@ -1,5 +1,6 @@
 package io.pmmp.poggit.kingdom.basic
 
+import io.pmmp.poggit.kingdom.KingdomTestData
 import io.pmmp.poggit.kingdom.html.dom.HtmlTree
 
 /*
@@ -20,4 +21,4 @@ import io.pmmp.poggit.kingdom.html.dom.HtmlTree
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-fun minimal(html: HtmlTree) = html {}
+fun minimal(html: HtmlTree<KingdomTestData>) = html {}

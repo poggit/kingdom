@@ -21,8 +21,8 @@ import io.pmmp.poggit.kingdom.html.dom.HtmlTree
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-class Kingdom{
-	val htmlTemplates = mutableMapOf<String, HtmlTree>()
+class Kingdom<Data : Context> {
+	val htmlTemplates = mutableMapOf<String, HtmlTree<Data>>()
 
 	val cssRuleSets = mutableMapOf<String, Set<CssRuleSet>>()
 }
